@@ -2,7 +2,6 @@
 # encoding: UTF-8
 
 require 'optparse'
-require 'vines'
 
 COMMANDS = %w[start stop restart init bcrypt cert ldap schema]
 
@@ -16,6 +15,11 @@ def parse(args)
 
     opts.on('-d', '--daemonize', 'Run daemonized in the background') do |daemonize|
       options[:daemonize] = daemonize
+    end
+
+    options[:config] = 'config/config.rb'
+    opts.on('-c', '--config FILE', "Path to configration file (default: config/config.rb)") do |config|
+      options[:config] = config
     end
 
     options[:log] = 'log/vines.log'
@@ -66,7 +70,7 @@ def parse(args)
   options.tap do |opts|
     opts[:args]    = args
     opts[:command] = command
-    opts[:config]  = File.expand_path('conf/config.rb')
+    opts[:config]  = File.expand_path(opts[:config])
     opts[:pid]     = File.expand_path(opts[:pid])
     opts[:log]     = File.expand_path(opts[:log])
   end
@@ -83,8 +87,15 @@ end
 VINES_ROOT = Dir.pwd
 opts = parse(ARGV)
 check_config(opts)
-command = Vines::Command.const_get(opts[:command].capitalize).new
+
+# Adds ability for a vines app point to the edge of vines gem
+ENV['BUNDLE_GEMFILE'] ||= File.join(VINES_ROOT, 'Gemfile')
+require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
+
+require "vines"
+
 begin
+  command = Vines::Command.const_get(opts[:command].capitalize).new
   command.run(opts)
 rescue SystemExit
   # do nothing

@@ -1,22 +1,32 @@
 # encoding: UTF-8
 
+require 'active_support/hash_with_indifferent_access'
+
 module Vines
   class Storage
     include Vines::Log
 
+    autoload :Null,    'vines/storage/null'
+    autoload :Ldap,    'vines/storage/ldap'
+    autoload :Local,   'vines/storage/local'
+    autoload :CouchDB, 'vines/storage/couchdb'
+    autoload :MongoDB, 'vines/storage/mongodb'
+    autoload :Sql,     'vines/storage/sql'
+    autoload :Redis,   'vines/storage/redis'
+
     attr_accessor :ldap
 
-    @@nicks = {}
-
-    # Register a nickname that can be used in the config file to specify this
-    # storage implementation.
-    def self.register(name)
-      @@nicks[name.to_sym] = self
-    end
+    @@nicks = HashWithIndifferentAccess.new.merge({
+      :fs      => :Local,
+      :couchdb => :CouchDB,
+      :mongodb => :MongoDB,
+      :sql     => :Sql,
+      :redis   => :Redis
+    })
 
     def self.from_name(name, &block)
-      klass = @@nicks[name.to_sym]
-      raise "#{name} storage class not found" unless klass
+      raise "#{name} storage class not found" unless @@nicks.has_key?(name)
+      klass = const_get(@@nicks[name])
       klass.new(&block)
     end
 

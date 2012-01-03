@@ -1,9 +1,10 @@
 # encoding: UTF-8
 
+require 'active_record'
+
 module Vines
   class Storage
     class Sql < Storage
-      register :sql
 
       class Contact < ActiveRecord::Base
         belongs_to :user

@@ -21,7 +21,12 @@ Additional documentation can be found at www.getvines.com.
 
 == Dependencies
 
-* bcrypt-ruby >= 3.0.1
+* bcrypt-ruby >= 3.0.1 (optional, you may use sha256 or sha1 instead)
+* activerecord >= 3.1.0 (optional, for sql storage method)
+* em-hiredis >= 3.1.0 (optional, for redis storage method or clustering)
+* em-http-request ~> 0.3  (optional, for couchdb storage method)
+* mongo ~> 1.5 and bson_ext ~> 1.5 (optional, for mongodb storage method)
+* net-ldap ~> 0.2 (optional, for ldap storage method)
 * eventmachine >= 0.12.10
 * nokogiri >= 1.4.7
 * ruby >= 1.9.2

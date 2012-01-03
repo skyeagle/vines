@@ -10,6 +10,7 @@ module Vines
     LOG_LEVELS = %w[debug info warn error fatal].freeze
 
     attr_reader :router, :vhosts
+    attr_accessor :path
 
     @@instance = nil
     def self.configure(&block)

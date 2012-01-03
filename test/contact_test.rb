@@ -1,9 +1,5 @@
 # encoding: UTF-8
 
-require 'vines'
-require 'ext/nokogiri'
-require 'minitest/autorun'
-
 class ContactTest < MiniTest::Unit::TestCase
   def test_equality
     alice  = Vines::Contact.new(:jid => 'alice@wonderland.lit')

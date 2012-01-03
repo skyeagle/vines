@@ -1,9 +1,10 @@
 # encoding: UTF-8
 
+require 'em-hiredis'
+
 module Vines
   class Storage
     class Redis < Storage
-      register :redis
 
       %w[host port database password].each do |name|
         define_method(name) do |*args|

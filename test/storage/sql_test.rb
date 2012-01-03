@@ -1,8 +1,6 @@
 # encoding: UTF-8
 
 require 'storage_tests'
-require 'vines'
-require 'minitest/autorun'
 
 class SqlTest < MiniTest::Unit::TestCase
   include StorageTests

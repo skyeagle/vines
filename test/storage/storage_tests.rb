@@ -1,9 +1,5 @@
 # encoding: UTF-8
 
-require 'vines'
-require 'ext/nokogiri'
-require 'minitest/autorun'
-
 # Mixin methods for storage implementation test classes. The behavioral
 # tests are the same regardless of implementation so share those methods
 # here.

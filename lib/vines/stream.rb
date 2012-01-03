@@ -21,7 +21,7 @@ module Vines
       @remote_addr, @local_addr = addresses
       @user, @closed, @stanza_size = nil, false, 0
       @bucket = TokenBucket.new(100, 10)
-      @store = Store.new
+      @store = Store.new(@config)
       @nodes = EM::Queue.new
       process_node_queue
       create_parser
@@ -236,7 +236,7 @@ module Vines
     end
 
     def tls_files
-      %w[crt key].map {|ext| File.join(VINES_ROOT, 'conf', 'certs', "#{domain}.#{ext}") }
+      %w[crt key].map {|ext| File.expand_path("../certs/#{domain}.#{ext}", @config.path) }
     end
 
     # Return true if this is a valid domain-only JID that can be used in

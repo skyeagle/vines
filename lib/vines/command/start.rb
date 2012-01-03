@@ -6,7 +6,9 @@ module Vines
       def run(opts)
         raise 'vines [--pid FILE] start' unless opts[:args].size == 0
         require opts[:config]
-        server = XmppServer.new(Config.instance)
+        config_instance = Config.instance
+        config_instance.path = opts[:config]
+        server = XmppServer.new(config_instance)
         daemonize(opts) if opts[:daemonize]
         server.start
       end

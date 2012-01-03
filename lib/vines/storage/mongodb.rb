@@ -1,9 +1,10 @@
 # encoding: UTF-8
 
+require 'mongo'
+
 module Vines
   class Storage
     class MongoDB < Storage
-      register :mongodb
 
       %w[database tls username password pool].each do |name|
         define_method(name) do |*args|

@@ -1,8 +1,5 @@
 # encoding: UTF-8
 
-require 'vines'
-require 'minitest/autorun'
-
 class JidTest < MiniTest::Unit::TestCase
   def test_nil_and_empty_jids
     [nil, ''].each do |text|

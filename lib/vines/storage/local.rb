@@ -6,7 +6,6 @@ module Vines
     # A storage implementation that persists data to YAML files on the
     # local file system.
     class Local < Storage
-      register :fs
 
       def initialize(&block)
         instance_eval(&block)

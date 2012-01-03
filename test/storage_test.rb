@@ -1,9 +1,5 @@
 # encoding: UTF-8
 
-require 'storage_tests'
-require 'vines'
-require 'minitest/autorun'
-
 class StorageTest < MiniTest::Unit::TestCase
   ALICE = 'alice@wonderland.lit'.freeze
 

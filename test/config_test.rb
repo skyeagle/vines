@@ -1,9 +1,5 @@
 # encoding: UTF-8
 
-require 'tmpdir'
-require 'vines'
-require 'minitest/autorun'
-
 class ConfigTest < MiniTest::Unit::TestCase
   def test_missing_host
     assert_raises(RuntimeError) do

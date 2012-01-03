@@ -1,10 +1,5 @@
 # encoding: UTF-8
 
-require 'tmpdir'
-require 'vines'
-require 'ext/nokogiri'
-require 'minitest/autorun'
-
 class StanzaTest < MiniTest::Unit::TestCase
   def setup
     @alice = Vines::JID.new('alice@wonderland.lit/tea')

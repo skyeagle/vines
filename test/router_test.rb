@@ -1,9 +1,5 @@
 # encoding: UTF-8
 
-require 'tmpdir'
-require 'vines'
-require 'minitest/autorun'
-
 class RouterTest < MiniTest::Unit::TestCase
   def setup
     @alice = Vines::JID.new('alice@wonderland.lit/tea')

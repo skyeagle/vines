@@ -1,8 +1,5 @@
 # encoding: UTF-8
 
-require 'vines'
-require 'minitest/autorun'
-
 class ErrorTest < MiniTest::Unit::TestCase
   def test_sasl_error_without_text
     expected = %q{<failure xmlns="urn:ietf:params:xml:ns:xmpp-sasl"><temporary-auth-failure/></failure>}

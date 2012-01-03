@@ -1,8 +1,5 @@
 # encoding: UTF-8
 
-require 'vines'
-require 'minitest/autorun'
-
 class TokenBucketTest < MiniTest::Unit::TestCase
   def test_init
     assert_raises(ArgumentError) { Vines::TokenBucket.new(0, 1) }

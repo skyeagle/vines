@@ -8,7 +8,8 @@ module Vines
   class Store
     @@certs = nil
 
-    def initialize
+    def initialize(config)
+      @config = config
       @store = OpenSSL::X509::Store.new
       certs.each {|c| @store.add_cert(c) }
     end
@@ -39,7 +40,7 @@ module Vines
     def certs
       unless @@certs
         pattern = /-{5}BEGIN CERTIFICATE-{5}\n.*?-{5}END CERTIFICATE-{5}\n/m
-        dir = File.join(VINES_ROOT, 'conf', 'certs')
+        dir = File.expand_path("../certs", @config.path)
         certs = Dir[File.join(dir, '*.crt')].map {|f| File.read(f) }
         certs = certs.map {|c| c.scan(pattern) }.flatten
         certs.map! {|c| OpenSSL::X509::Certificate.new(c) }

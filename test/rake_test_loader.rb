@@ -1,8 +1,22 @@
 require 'rake'
 
-# Use the latest MiniTest gem instead of the buggy
-# version included with Ruby 1.9.2.
-gem 'minitest', '2.2.2'
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+require 'bundler/setup'
+
+require 'active_record'
+require 'vines'
+require 'ext/nokogiri'
+require 'minitest/autorun'
+require 'bcrypt'
+require 'http/parser'
+require 'em-http'
+require 'em-hiredis'
+require 'base64'
+require 'net/ldap'
+require 'mongo'
+require 'active_support/json'
+require 'tmpdir'
+
 
 # Load the test files from the command line.
 

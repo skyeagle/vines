@@ -1,8 +1,5 @@
 # encoding: UTF-8
 
-require 'vines'
-require 'minitest/autorun'
-
 class UserTest < MiniTest::Unit::TestCase
   def test_equality
     alice  = Vines::User.new(:jid => 'alice@wonderland.lit')

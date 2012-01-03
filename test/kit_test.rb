@@ -1,8 +1,5 @@
 # encoding: UTF-8
 
-require 'vines'
-require 'minitest/autorun'
-
 class KitTest < MiniTest::Unit::TestCase
   def test_hmac
     assert_equal 128, Vines::Kit.hmac('secret', 'username').length
