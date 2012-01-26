@@ -27,7 +27,7 @@ def parse(args)
       options[:log] = log
     end
 
-    options[:pid] = 'pid/vines.pid'
+    options[:pid] = 'tmp/pids/vines.pid'
     opts.on('-P', '--pid FILE', 'File to store PID (default: pid/vines.pid)') do |pid|
       options[:pid] = pid
     end
@@ -87,10 +87,6 @@ end
 VINES_ROOT = Dir.pwd
 opts = parse(ARGV)
 check_config(opts)
-
-# Adds ability for a vines app point to the edge of vines gem
-ENV['BUNDLE_GEMFILE'] ||= File.join(VINES_ROOT, 'Gemfile')
-require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
 require "vines"
 
