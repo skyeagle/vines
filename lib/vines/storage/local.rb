@@ -8,6 +8,7 @@ module Vines
     class Local < Storage
 
       def initialize(&block)
+        @dir = nil
         instance_eval(&block)
         unless @dir && File.directory?(@dir) && File.writable?(@dir)
           raise 'Must provide a writable storage directory'
